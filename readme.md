@@ -1,3 +1,13 @@
 # codekata
 
-codekata makes doing coding katas easier and more fun. At its basic level the codekata command line utility makes setting up, executing and learning from coding exercises more fun and effective.
+codekata makes doing coding katas easier and more fun. At its basic
+level the codekata command line utility makes setting up, executing
+and learning from coding exercises more fun and effective.
+
+
+## Installation
+
+
+
+	wget https://raw.githubusercontent.com/grahambrooks/codekata/master/scripts/install -O - | sh
+
