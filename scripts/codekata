@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+echo "\033[0;33mCode Kata.\033[0m Programming for education and fun"
+
+
