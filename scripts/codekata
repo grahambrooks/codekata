@@ -22,7 +22,11 @@ function do_action() {
 	if [ -e "$kata_path/scripts/$action" ]; then
 	    "$kata_path/scripts/$action"
 	else
-	    echo not a regular file
+	    if [ -e $kata_path/recipes/$action.sh ]; then
+		sh $kata_path/recipes/$action.sh
+	    else
+		echo "Unknown or missing action"
+	    fi
 	fi
     fi
 }
