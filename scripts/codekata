@@ -19,7 +19,6 @@ function do_action() {
     local action=$2
     
     if [ ! -z "$action" ]; then
-	echo "$kata_path/scripts/$action"
 	if [ -e "$kata_path/scripts/$action" ]; then
 	    "$kata_path/scripts/$action"
 	else
