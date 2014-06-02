@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+set -e
+
+function setup_environment() {
+    if [ ! -n "$KATA" ]; then
+	readonly KATA=~/.codekata
+    fi
+}
+
+function update_repo() {
+    local repo_path=$1
+
+    if [ -d $repo_path ]; then
+	git pull $repo_path
+    else
+	echo "\033[0;33mCan't find installed $repo_path directory. You will need to reinstall"
+	exit
+    fi
+}
+
+function all_done() {
+    echo "\033[0;34mCode Kata up to date\033[0m"
+}
+
+setup_environment
+update_repo $KATA
+all_done
