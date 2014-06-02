@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-set -e
-
 function setup_environment() {
+    set -e
+
     if [ ! -n "$KATA" ]; then
 	readonly KATA=~/.codekata
     fi
@@ -12,7 +12,7 @@ function update_repo() {
     local repo_path=$1
 
     if [ -d $repo_path ]; then
-	git pull $repo_path
+	git --work-tree=$repo_path --git-dir=$repo_path/.git pull origin master
     else
 	echo "\033[0;33mCan't find installed $repo_path directory. You will need to reinstall"
 	exit

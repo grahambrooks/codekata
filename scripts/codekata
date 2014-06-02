@@ -1,5 +1,35 @@
 #!/usr/bin/env sh
 
-echo "\033[0;33mCode Kata.\033[0m Programming for education and fun"
+readonly ACTION=$1
+
+function banner() {
+    echo "\033[0;33mCode Kata.\033[0m Programming for education and fun"
+}
+
+function setup_environment() {
+    set -e
+
+    if [ ! -n "$KATA" ]; then
+	readonly KATA=~/.codekata
+    fi
+}
+
+function do_action() {
+    local kata_path=$1
+    local action=$2
+    
+    if [ ! -z "$action" ]; then
+	echo "$kata_path/scripts/$action"
+	if [ -e "$kata_path/scripts/$action" ]; then
+	    "$kata_path/scripts/$action"
+	else
+	    echo not a regular file
+	fi
+    fi
+}
 
 
+
+banner
+setup_environment
+do_action $KATA $ACTION
