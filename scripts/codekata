@@ -2,7 +2,14 @@
 
 readonly ACTION=$1
 
-source $(dirname $0)/utils
+if [ "" == "$(readlink $0)" ]; then
+    readonly KATA_INCLUDE=$(dirname $0)
+else
+    readonly KATA_INCLUDE=$(dirname $(readlink $0))
+fi
+
+source $KATA_INCLUDE/utils
+
 
 function banner() {
     echo "\033[0;33mCode Kata.\033[0m Programming for education and fun"
