@@ -2,6 +2,8 @@
 
 readonly ACTION=$1
 
+source $(dirname $0)/utils
+
 function banner() {
     echo "\033[0;33mCode Kata.\033[0m Programming for education and fun"
 }

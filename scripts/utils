@@ -1,0 +1,10 @@
+function is_installed() {
+    return type $1 >/dev/null 2>&1 
+}
+
+
+#is_installed("foo") ||{ echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
+
+#command -v lazybuilder >/dev/null 2>&1 || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
+#type npm >/dev/null 2>&1 || { echo >&2 "I require npm but it's not installed.  Aborting."; exit 1; }
+#hash ruby 2>/dev/null || { echo >&2 "I require ruby but it's not installed.  Aborting."; exit 1; }
