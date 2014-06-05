@@ -119,6 +119,22 @@ js    JavaScript Kata
 EOF
 }
 
+function update_action() {
+    local repo_path=$1
+
+    if [ -d $repo_path ]; then
+	if git --work-tree=$repo_path --git-dir=$repo_path/.git pull origin master; then
+	    echo "\033[0;34mCode Kata up to date\033[0m"
+	else 
+	    echo "\033[0;34mSomething went wrong with the update - you will need to fix the problem yourself\033[0m"
+	fi
+    else
+	echo "\033[0;33mCan't find installed $repo_path directory. You will need to reinstall"
+    fi
+}
+
+
+
 function usage() {
     cat <<EOF
 codekata action
