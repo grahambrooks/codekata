@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 readonly ACTION=$1
+readonly ACTION_ARG=$2
 
 if [ "" == "$(readlink $0)" ]; then
     readonly KATA_INCLUDE=$(dirname $0)
@@ -23,25 +24,142 @@ function setup_environment() {
     fi
 }
 
-function do_action() {
-    local kata_path=$1
-    local action=$2
+function cat_file() {
+    local file_path=$1
+
+    echo "Cat file called for $file_path"
+
+    is_file $file_path \
+	&& { cat $file_path; }
+}
+
+function run_script() {
+    local script_path=$1
+
+    is_file $script_path && { \
+	echo $script_path;  }
+}
+
+function prompt_with_default() {
+    local pmt=$1
+    local default=$2
+
+    echo Prompt called with $pmt and $default
+
+    read -p "$pmt" response
     
-    if [ ! -z "$action" ]; then
-	if [ -e "$kata_path/scripts/$action" ]; then
-	    "$kata_path/scripts/$action"
+    if ["$response" == ""]; then
+	return 0
+    else
+	if ["$response" == "Y"]; then
+	    return 0
 	else
-	    if [ -e $kata_path/recipes/$action.sh ]; then
-		sh $kata_path/recipes/$action.sh
-	    else
-		echo "Unknown or missing action"
-	    fi
+	    return 1
 	fi
     fi
 }
 
 
+function start_action() {
+    local kata_path=$1
+    local kata_lang=$2
+    local kata_dir=$(pwd)/$(date +"%Y-%m-%d")
+    
+    local language_path="$kata_path/templates/$kata_lang"
 
-banner
-setup_environment
-do_action $KATA $ACTION
+    if [ -d $language_path ]; then
+	
+	cat_file $language_path/about
+
+	run_script "$kata_path/recipes/${kata_lang}.sh"
+
+	if prompt_with_default "Start a new kata in $kata_dir Y/n? " "Y"; then
+	    echo Setting up for kata $kata_dir
+	    
+	    mkdir $kata_dir
+	    cp $kata_path/templates/$kata_lang/* $kata_dir
+
+
+	    cat <<EOF
+Your $kata_lang Kata has been setup in
+
+$kata_dir
+
+To keep things simple everything you need is in kata.$kata_lang just
+open your favorite editor, open the file and start editing.
+
+To keep things honest lazybuilder is running and will run tests each
+time you save the kata source file.
+
+Enjoy
+
+EOF
+
+	    cd $kata_dir
+	    
+	    lazybuilder
+	else
+	    echo "OK nothing done. \033[0;33mMaybe next time\033[0m"
+	fi
+    else
+	echo $kata_lang is not currently supported
+	list_action
+	exit 1
+    fi
+    
+}
+
+function list_action() {
+    cat <<EOF
+
+Available Kata language template:
+
+js    JavaScript Kata
+
+EOF
+}
+
+function usage() {
+    cat <<EOF
+codekata action
+
+Available actions
+
+start <language> Start a kata in your chosen language
+list             List available languages
+EOF
+}
+
+function do_action() {
+    local kata_path=$1
+    local action=$2
+    local action_arg=$3
+    local action_name=${action}_action
+
+    if [ ! -z "$action" ]; then
+	if declare -F $action_name &>/dev/null; then 
+	    $action_name $kata_path $action_arg
+	else
+	    if [ -e "$kata_path/scripts/$action" ]; then
+		"$kata_path/scripts/$action"
+	    else
+		if [ -e $kata_path/recipes/$action.sh ]; then
+		    sh $kata_path/recipes/$action.sh
+		else
+		    echo "Unknown or missing action"
+		fi
+	    fi
+	fi
+    else
+	usage
+    fi
+}
+
+
+function codekata() {
+    banner
+    setup_environment
+    do_action $KATA $ACTION $ACTION_ARG
+}
+
+codekata

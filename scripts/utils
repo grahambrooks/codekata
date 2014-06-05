@@ -3,6 +3,31 @@ function is_installed() {
 }
 
 
+is_empty() {
+    local var=$1
+    
+    [[ -z $var ]]
+}
+
+is_not_empty() {
+    local var=$1
+
+    [[ -n $var ]]
+}
+
+is_file() {
+    local file=$1
+
+    [[ -f $file ]]
+}
+
+is_dir() {
+    local dir=$1
+
+    [[ -d $dir ]]
+}
+
+
 #is_installed("foo") ||{ echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
 
 #command -v lazybuilder >/dev/null 2>&1 || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
