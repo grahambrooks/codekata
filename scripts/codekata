@@ -27,8 +27,6 @@ function setup_environment() {
 function cat_file() {
     local file_path=$1
 
-    echo "Cat file called for $file_path"
-
     is_file $file_path \
 	&& { cat $file_path; }
 }
@@ -37,14 +35,12 @@ function run_script() {
     local script_path=$1
 
     is_file $script_path && { \
-	echo $script_path;  }
+	sh $script_path;  }
 }
 
 function prompt_with_default() {
     local pmt=$1
     local default=$2
-
-    echo Prompt called with $pmt and $default
 
     read -p "$pmt" response
     
@@ -80,10 +76,10 @@ function start_action() {
 	    cp $kata_path/templates/$kata_lang/* $kata_dir
 
 
-	    cat <<EOF
-Your $kata_lang Kata has been setup in
+	    echo "
+Your \033[32;1m$kata_lang\033[0m Kata has been setup in
 
-$kata_dir
+\033[32;1m$kata_dir\033[0m
 
 To keep things simple everything you need is in kata.$kata_lang just
 open your favorite editor, open the file and start editing.
@@ -91,9 +87,9 @@ open your favorite editor, open the file and start editing.
 To keep things honest lazybuilder is running and will run tests each
 time you save the kata source file.
 
-Enjoy
+Enjoy!!
 
-EOF
+"
 
 	    cd $kata_dir
 	    
@@ -110,13 +106,12 @@ EOF
 }
 
 function list_action() {
-    cat <<EOF
+    echo "
+\033[1mAvailable langugage templates:\033[0m
 
-Available Kata language template:
+\033[32mjs    \033[0mJavaScript Kata using qunit and node.js
 
-js    JavaScript Kata
-
-EOF
+"
 }
 
 function update_action() {
