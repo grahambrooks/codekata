@@ -19,8 +19,8 @@ function banner() {
 function setup_environment() {
     set -e
 
-    if [ ! -n "$KATA" ]; then
-	readonly KATA=~/.codekata
+    if [ ! -n "$KATA_HOME" ]; then
+	readonly KATA_HOME=~/.codekata
     fi
 }
 
@@ -136,14 +136,19 @@ function update_action() {
 
 
 function usage() {
-    cat <<EOF
-codekata action
+    echo "
+\033[1mUsage\033[0m
 
-Available actions
+    \033[31;1mcodekata\033[32;1m [action]\033[0m
 
-start <language> Start a kata in your chosen language
-list             List available languages
-EOF
+\033[1mAvailable actions:\033[0m
+
+\033[32mstart <language> \033[0mStart a kata in your chosen language
+\033[32mlist             \033[0mList available languages
+\033[32mupdate           \033[0mUpdate the currently installed codekata
+
+
+"
 }
 
 function do_action() {
@@ -175,7 +180,7 @@ function do_action() {
 function codekata() {
     banner
     setup_environment
-    do_action $KATA $ACTION $ACTION_ARG
+    do_action $KATA_HOME $ACTION $ACTION_ARG
 }
 
 codekata
