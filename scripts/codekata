@@ -44,10 +44,10 @@ function prompt_with_default() {
 
     read -p "$pmt" response
     
-    if ["$response" == ""]; then
+    if [ "$response" == "" ]; then
 	return 0
     else
-	if ["$response" == "Y"]; then
+	if [ "$response" == "Y" ]; then
 	    return 0
 	else
 	    return 1
@@ -55,6 +55,14 @@ function prompt_with_default() {
     fi
 }
 
+function make_lazybuilder_available() {
+    echo "Checking lazybuilder installaiton"
+    is_installed "lazybuilder" && { \
+	brew update; \
+	brew tap grahambrooks/lazybuilder; \
+	brew install lazybuilder; }
+    echo "Lazybuilder should be available"
+}
 
 function start_action() {
     local kata_path=$1
@@ -93,7 +101,9 @@ Enjoy!!
 
 	    cd $kata_dir
 	    
-	    lazybuilder
+	    make_lazybuilder_available;
+
+	    lazybuilder -t;
 	else
 	    echo "OK nothing done. \033[0;33mMaybe next time\033[0m"
 	fi
