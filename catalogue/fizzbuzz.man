@@ -1,0 +1,91 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.\"
+.TH "Fizz Buzz" "Code Kata"
+.SH SYNOPSIS
+
+From Wikipedia, the free encyclopedia
+
+Fizz buzz (also known as bizz buzz, or simply buzz) is a group word
+game for children to teach them about division.[1] Players take turns
+to count incrementally, replacing any number divisible by three with
+the word "fizz", and any number divisible by five with the word
+"buzz".
+
+.SH PLAY
+
+Players generally sit in a circle. The player designated to go first
+says the number "1", and each player thenceforth counts one number in
+turn. However, any number divisible by three is replaced by the word
+fizz and any divisible by five by the word buzz. Numbers divisible by
+both become fizz buzz. A player who hesitates or makes a mistake is
+eliminated from the game.
+
+For example, a typical round of fizz buzz would start as follows:
+
+1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, Fizz
+Buzz, 16, 17, Fizz, 19, Buzz, Fizz, 22, 23, Fizz, Buzz, 26, Fizz, 28,
+29, Fizz Buzz, 31, 32, Fizz, 34, Buzz, Fizz, ...
+
+.SH VARIATIONS
+
+Different divisors can be used in place of, or in addition, to 3 and
+5, and different words or gestures can replace "fizz" or "buzz". For
+example, in Australia a variant based on the game of cricket is
+played. In this variant, the special numbers are 4 and 6, which are
+replaced with the cricket umpiring gestures for their respective
+scoring plays. A common version of the game in Israel is called "7
+Boom". The players replace every number divisible by 7 or containing
+the digit 7 with "boom".[citation needed]
+
+Instead of replacing numbers that have 3 or 5 as a factor, the game
+can be played by replacing numbers containing the digit 3 or 5 with
+"fizz" or "buzz".
+
+1, 2, Fizz, 4, Buzz, 6, 7, 8, 9, 10, 11, 12, Fizz, 14, Buzz, 16, 17,
+18, 19, 20, 21, 22, Fizz, 24, Buzz, 26, 27, 28, 29, Fizz, Fizz, Fizz,
+Fizz Fizz, Fizz, Fizz Buzz, Fizz, Fizz, Fizz, Fizz, 40, 41, 42, Fizz,
+44, Buzz, ...
+
+In these variations, sometimes only the actual digit is replaced, so
+23 becomes "twenty-fizz" and 50 is "buzzty". This variation can be
+combined with the original to form an even more challenging sequence:
+
+1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, Fizz, 14, Fizz
+Buzz, 16, 17, Fizz, 19, Buzz, Fizz, 22, Fizz, Fizz, Buzz, 26, Fizz,
+28, 29, Fizz Buzz, Fizz, Fizz, Fizz Fizz, Fizz, Fizz Buzz, Fizz, Fizz,
+Fizz, Fizz, Buzz, 41, Fizz, Fizz, 44, Fizz Buzz, ...
+
+The game can be played in a mathematical base other than 10. For
+example, playing in base 5 would proceed as follows:
+
+1, 2, Fizz, 4, Buzz, Fizz, 12, 13, Fizz, Buzz, 21, Fizz, 23, 24, Fizz
+Buzz, 31, 32, Fizz, 34, Buzz, Fizz, ...
+
+More challenging variation has the direction of play change on Fizz or
+Buzz, but not on Fizz-Buzz. For certain sequences, this makes the
+action bounce between 2 or 3 players and causes misplays when it
+breaks out. The 3/7 version of the game has a complex sequence between
+12 and 18, for example. A New Jersey variation is just to say buzz on
+prime numbers and switch directions. The reversal of direction may be
+optional.
+
+.SH Fizz Buzz Woof
+
+One variation has expanded to such an extent as to have its own
+related name.[citation needed] Many of the above rules are the
+same. In this case, the number 3 becomes Fizz, 5 becomes Buzz, and 7
+becomes Woof. The main rules in this game are that any number that
+contains the number or is divisible by that number is replaced by an
+occurrence of the word. If the number has 2 instances of that number
+(i.e. 33 or 55) and is divisible by that number, then the word is said
+three times in this example. The additional rule is that the words (if
+more than one occur) must be said in the order given in the title. For
+example:
+
+1, 2, Fizz Fizz (3), 4, Buzz Buzz (5), Fizz (6), Woof Woof (7), 8,
+Fizz (9), Buzz (10), 11, Fizz (12), Fizz (13), Woof (14), Fizz Buzz
+Buzz (15), 16, Woof (17), Fizz (18), 19, Buzz (20), Fizz Woof (21),
+22, Fizz (23), Fizz (24), Buzz Buzz (25), 26, Fizz Woof (27), Woof
+(28), 29, Fizz Fizz Buzz (30), Fizz (31), Fizz (32), Fizz Fizz Fizz
+(33), ...
