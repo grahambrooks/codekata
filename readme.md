@@ -4,6 +4,24 @@ codekata makes doing coding katas easier and more fun. At its basic
 level the codekata command line utility makes setting up, executing
 and learning from coding exercises more fun and effective.
 
+## Usage
+
+    codekata [action]
+
+	Available actions:
+
+	start <language> Start a kata in your chosen language
+	list             List available languages
+	update           Update the currently installed codekata
+	kata             List available katas
+	info <kata>      Show details of the named kata
+
+e.g.
+
+	codekata start js
+
+Starts a Javascript kata in a directory named after the current date
+YYYY-MM-YY
 
 ## Dependencies
 
