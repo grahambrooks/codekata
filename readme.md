@@ -20,5 +20,7 @@ template and recipes for dependencies.
 
 ## Installation
 
+Open a terminal window and enter the following:
+
 	wget https://raw.githubusercontent.com/grahambrooks/codekata/master/scripts/install -O - | sh
 

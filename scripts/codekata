@@ -138,6 +138,26 @@ function update_action() {
     fi
 }
 
+function kata_action() {
+    local kata_path=$1
+    local action=$2
+    local action_arg=$3
+
+    echo "\033[32m
+Available Katas\033[0m
+"
+
+    ls -1 $kata_path/catalogue | sed 's/.man//'
+
+    echo
+}
+
+function info_action() {
+    local kata_path=$1
+    local kata_name=$2
+
+    groff -man -Tascii $kata_path/catalogue/$kata_name.man
+}
 
 
 function usage() {
@@ -151,8 +171,8 @@ function usage() {
 \033[32mstart <language> \033[0mStart a kata in your chosen language
 \033[32mlist             \033[0mList available languages
 \033[32mupdate           \033[0mUpdate the currently installed codekata
-
-
+\033[32mkata             \033[0mList available katas
+\033[32minfo <kata>      \033[0mShow details of the named kata
 "
 }
 
