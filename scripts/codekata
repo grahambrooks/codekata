@@ -128,6 +128,7 @@ function list_action() {
 
 \033[32mjs     \033[0mJavaScript Kata using qunit and node.js
 \033[32melixir \033[0mElixir Kata
+\033[32mgo     \033[0mGo Kata http://golang.org
 
 "
 }
