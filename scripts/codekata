@@ -76,8 +76,6 @@ function start_action() {
 
     cat_file $language_path/about
 
-    echo "Running $kata_path/recipes/${kata_lang}.sh"
-
     run_script "$kata_path/recipes/${kata_lang}.sh"
     
     if prompt_with_default "Start a new kata in $kata_dir Y/n? " "Y"; then
@@ -128,7 +126,8 @@ function list_action() {
     echo "
 \033[1mAvailable langugage templates:\033[0m
 
-\033[32mjs    \033[0mJavaScript Kata using qunit and node.js
+\033[32mjs     \033[0mJavaScript Kata using qunit and node.js
+\033[32melixir \033[0mElixir Kata
 
 "
 }
