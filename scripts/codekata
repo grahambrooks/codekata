@@ -33,9 +33,10 @@ function cat_file() {
 
 function run_script() {
     local script_path=$1
+    local script_param=$2
 
     is_file $script_path && { \
-	sh $script_path;  }
+	sh $script_path $script_param;  }
 }
 
 function prompt_with_default() {
@@ -79,9 +80,13 @@ function start_action() {
 
 	if prompt_with_default "Start a new kata in $kata_dir Y/n? " "Y"; then
 	    echo Setting up for kata $kata_dir
-	    
-	    mkdir $kata_dir
-	    cp $kata_path/templates/$kata_lang/* $kata_dir
+
+	    if [ -d $kata_path/templates/$kata_lang.sh ] then
+		run_script "$kata_path/templates/$kata_lang.sh" "$kata_dir"
+	    else
+		mkdir $kata_dir
+		cp $kata_path/templates/$kata_lang/* $kata_dir
+	    fi
 
 
 	    echo "
