@@ -3,7 +3,7 @@ readonly PROJECT_PATH=$1
 
 
 function new_kata() {
-    mix $PROJECT_PATH --app kata
+    mix new $PROJECT_PATH --app kata
 
     echo "
 all:

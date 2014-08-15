@@ -29,6 +29,7 @@ function cat_file() {
 
     is_file $file_path \
 	&& { cat $file_path; }
+    return 0
 }
 
 function run_script() {
@@ -37,6 +38,7 @@ function run_script() {
 
     is_file $script_path && { \
 	sh $script_path $script_param;  }
+    return 0
 }
 
 function prompt_with_default() {
@@ -72,24 +74,31 @@ function start_action() {
     
     local language_path="$kata_path/templates/$kata_lang"
 
-    if [ -d $language_path ]; then
+    cat_file $language_path/about
+
+    echo "Running $kata_path/recipes/${kata_lang}.sh"
+
+    run_script "$kata_path/recipes/${kata_lang}.sh"
+    
+    if prompt_with_default "Start a new kata in $kata_dir Y/n? " "Y"; then
+	echo Setting up for kata $kata_dir
 	
-	cat_file $language_path/about
-
-	run_script "$kata_path/recipes/${kata_lang}.sh"
-
-	if prompt_with_default "Start a new kata in $kata_dir Y/n? " "Y"; then
-	    echo Setting up for kata $kata_dir
-
-	    if [ -d $kata_path/templates/$kata_lang.sh ]; then
-		run_script "$kata_path/templates/$kata_lang.sh" "$kata_dir"
-	    else
+	if [ -f $kata_path/templates/$kata_lang.sh ]; then
+	    mkdir $kata_dir
+	    run_script "$kata_path/templates/$kata_lang.sh" "$kata_dir"
+	else
+	    if [ -d $language_path ]; then
 		mkdir $kata_dir
 		cp $kata_path/templates/$kata_lang/* $kata_dir
+	    else
+		echo $kata_lang is not currently supported
+		list_action
+		exit 1
 	    fi
-
-
-	    echo "
+	fi
+	
+	
+	echo "
 Your \033[32;1m$kata_lang\033[0m Kata has been setup in
 
 \033[32;1m$kata_dir\033[0m
@@ -112,11 +121,6 @@ Enjoy!!
 	else
 	    echo "OK nothing done. \033[0;33mMaybe next time\033[0m"
 	fi
-    else
-	echo $kata_lang is not currently supported
-	list_action
-	exit 1
-    fi
     
 }
 
